@@ -1,0 +1,191 @@
+package school.lemon.koboziev.INTERESNIE_PROGI;
+
+
+        import java.util.Random;
+        import javafx.application.Application;
+        import javafx.event.ActionEvent;
+        import javafx.event.EventHandler;
+        import javafx.scene.Scene;
+        import javafx.scene.control.Button;
+        import javafx.scene.input.MouseEvent;
+        import javafx.scene.layout.StackPane;
+        import javafx.scene.paint.Color;
+        import javafx.scene.shape.Circle;
+        import javafx.scene.shape.Rectangle;
+        import javafx.stage.Stage;
+
+
+public class Controller extends Application {
+    Double oldX,oldY;
+
+    @Override
+    public void start(Stage primaryStage) {
+        StackPane root = new StackPane();
+        Scene scene = new Scene(root,700, 500);
+        primaryStage.setTitle("Laba_5");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+
+        Button GeB=new Button("Ganerate");
+        root.getChildren().add(GeB);
+        GeB.setTranslateX(-30);
+        GeB.setTranslateY(180);
+        GeB.setPrefSize(100,50);
+
+        Button SB=new Button("Size");
+        root.getChildren().add(SB);
+        SB.setTranslateX(210);
+        SB.setTranslateY(180);
+        SB.setPrefSize(100,50);
+
+        Button ChB=new Button("Change");
+        root.getChildren().add(ChB);
+        ChB.setTranslateX(90);
+        ChB.setTranslateY(180);
+        ChB.setPrefSize(100,50);
+
+        Rectangle r=new Rectangle(50,80);
+        r.setTranslateX(100);
+        r.setTranslateY(-150);
+        r.setFill(Color.YELLOW);
+
+        Rectangle r1=new Rectangle(50,80);
+        r1.setTranslateX(150);
+        r1.setTranslateY(-50);
+        r1.setFill(Color.RED);
+
+        Circle c=new Circle();
+        c.setTranslateX(-150);
+        c.setTranslateY(60);
+        c.setRadius(30);
+        c.setFill(Color.BLUE);
+
+        Circle c1=new Circle();
+        c1.setFill(Color.DARKGREEN);
+        c1.setTranslateX(0);
+        c1.setTranslateY(0);
+        c1.setRadius(50);
+
+        GeB.setOnAction(new EventHandler<ActionEvent>(){
+            @Override
+            public void handle(ActionEvent event) {
+                try{
+                    root.getChildren().add(r);
+                    root.getChildren().add(r1);
+                    root.getChildren().add(c);
+                    root.getChildren().add(c1);
+                }
+                catch(IllegalArgumentException ex)
+                {System.out.printf(" ");}
+            }
+        });
+
+        ChB.setOnAction(e2->{
+            try{
+                r.setOnMousePressed(e->{
+                    oldX=r.getTranslateX()-e.getSceneX();
+                    oldY=r.getTranslateY()-e.getSceneY();
+                });
+                r.setOnMouseDragged(e->{
+                    r.setTranslateX(oldX+e.getSceneX());
+                    r.setTranslateY(oldY+e.getSceneY());
+                });
+
+                r1.setOnMousePressed(e->{
+                    oldX=r1.getTranslateX()-e.getSceneX();
+                    oldY=r1.getTranslateY()-e.getSceneY();
+                });
+                r1.setOnMouseDragged(e->{
+                    r1.setTranslateX(oldX+e.getSceneX());
+                    r1.setTranslateY(oldY+e.getSceneY());
+                });
+
+                c.setOnMousePressed(e->{
+                    oldX=c.getTranslateX()-e.getSceneX();
+                    oldY=c.getTranslateY()-e.getSceneY();
+                });
+                c.setOnMouseDragged(e->{
+                    c.setTranslateX(oldX+e.getSceneX());
+                    c.setTranslateY(oldY+e.getSceneY());
+                });
+
+                c1.setOnMousePressed(e->{
+                    oldX=c1.getTranslateX()-e.getSceneX();
+                    oldY=c1.getTranslateY()-e.getSceneY();
+                });
+                c1.setOnMouseDragged(e->{
+                    c1.setTranslateX(oldX+e.getSceneX());
+                    c1.setTranslateY(oldY+e.getSceneY());
+                });
+            }
+            catch(NullPointerException ex){System.out.println();}
+        });
+
+
+        SB.setOnAction(e1->{
+            try{
+                r.setOnMousePressed(e->{
+                    oldX=e.getSceneX();
+                    oldY=e.getSceneY();
+                    r.setScaleX(1.0);
+                    r.setScaleY(1.0);
+                });
+                r.setOnMouseDragged(e->{
+
+                    double scX=((e.getSceneX()-oldX)/100)+1;
+                    double scY=((e.getSceneY()-oldY)/100)+1;
+                    r.setScaleX(scX);
+                    r.setScaleY(scY);
+                });
+
+                r1.setOnMousePressed(e->{
+                    oldX=e.getSceneX();
+                    oldY=e.getSceneY();
+                    r1.setScaleX(1.0);
+                    r1.setScaleY(1.0);
+                });
+                r1.setOnMouseDragged(e->{
+
+                    double scX=((e.getSceneX()-oldX)/100)+1;
+                    double scY=((e.getSceneY()-oldY)/100)+1;
+                    r1.setScaleX(scX);
+                    r1.setScaleY(scY);
+                });
+
+                c.setOnMousePressed(e->{
+                    oldX=e.getSceneX();
+                    oldY=e.getSceneY();
+                    c.setScaleX(1.0);
+                    c.setScaleY(1.0);
+                });
+                c.setOnMouseDragged(e->{
+
+                    double scX=((e.getSceneX()-oldX)/100)+1;
+                    double scY=((e.getSceneY()-oldY)/100)+1;
+                    c.setScaleX(scX);
+                    c.setScaleY(scY);
+                });
+
+                c1.setOnMousePressed(e->{
+                    oldX=e.getSceneX();
+                    oldY=e.getSceneY();
+                    c1.setScaleX(1.0);
+                    c1.setScaleY(1.0);
+                });
+                c1.setOnMouseDragged(e->{
+
+                    double scX=((e.getSceneX()-oldX)/100)+1;
+                    double scY=((e.getSceneY()-oldY)/100)+1;
+                    c1.setScaleX(scX);
+                    c1.setScaleY(scY);
+                });
+            }
+            catch(NullPointerException ex){System.out.println();}
+        });
+    }
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+}
+
